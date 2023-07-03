@@ -1,19 +1,25 @@
-# Function - Install Chocolatey Package Manager
-function InstallChoco {
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+# Script Name: Post-Installation Setup
+# Description: This script installs Chocolatey and then uses it to install some default software.
 
+# Function - Install Chocolatey Package Manager
+function Install-Choco {
+    Set-ExecutionPolicy Bypass -Scope Process -Force
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+    iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 }
 
 # Function - Install Default Software via Chocolatey
-function InstallChocoDefaults {
-choco install brave -y
-choco install 7zip -y
-choco install liberoffice -f
-choco install telegram -y
-choco install winscp -y
-choco install heidisql -y
-choco install putty -y
-choco install puttygen -y
-choco install git -y
-
+function Install-ChocoDefaults {
+    choco install brave -y
+    choco install 7zip -y
+    choco install liberoffice -f
+    choco install telegram -y
+    choco install winscp -y
+    choco install heidisql -y
+    choco install putty -y
+    choco install git -y
 }
+
+# Run the functions to install Chocolatey and the default software
+Install-Choco
+Install-ChocoDefaults
